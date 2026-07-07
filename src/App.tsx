@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
@@ -10,10 +11,22 @@ import PaymentSchedule from './components/paymentschedule'
 import TimeTable from './components/timeTable'
 
 function App() {
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      return (window.localStorage.getItem('cpa-theme') as 'dark' | 'light') || 'dark'
+    }
+    return 'dark'
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    window.localStorage.setItem('cpa-theme', theme)
+  }, [theme])
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-950 text-slate-100">
-        <Navbar />
+      <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+        <Navbar theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
         <main className="mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <Routes>
             <Route path="/" element={<HomePage />} />

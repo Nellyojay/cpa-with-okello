@@ -19,7 +19,7 @@ function StudentInfo() {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-lg shadow-slate-950/30 sm:p-6">
+      <div className="portal-card p-5 sm:p-6">
         <h2 className="text-xl font-semibold text-white">Study progress</h2>
         <div className="mt-4 space-y-4">
           <div>
@@ -28,7 +28,7 @@ function StudentInfo() {
               <span>76%</span>
             </div>
             <div className="h-2 rounded-full bg-slate-800">
-              <div className="h-2 w-[76%] rounded-full bg-cyan-500" />
+              <div className="h-2 w-[76%] rounded-full bg-[var(--color-primary)]" />
             </div>
           </div>
           <div>
@@ -37,7 +37,7 @@ function StudentInfo() {
               <span>54%</span>
             </div>
             <div className="h-2 rounded-full bg-slate-800">
-              <div className="h-2 w-[54%] rounded-full bg-violet-500" />
+              <div className="h-2 w-[54%] rounded-full bg-[var(--color-accent)]" />
             </div>
           </div>
         </div>
