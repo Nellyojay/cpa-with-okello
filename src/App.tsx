@@ -1,18 +1,34 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import Navbar from './components/navbar'
+import Footer from './components/footer'
+import HomePage from './pages'
+import StudentPage from './pages/studentPage'
+import LoginPage from './pages/auth/login'
+import SignupPage from './pages/auth/signup'
+import StudentRegistry from './components/studentRegistery'
+import PaymentSchedule from './components/paymentschedule'
+import TimeTable from './components/timeTable'
+
 function App() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 py-16 text-white">
-      <div className="w-full max-w-2xl rounded-2xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl shadow-cyan-950/40 backdrop-blur">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-400">
-          Tailwind is ready
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
-          Your React + TypeScript app is now styled with Tailwind CSS.
-        </h1>
-        <p className="mt-4 text-lg text-slate-300">
-          You can start building interfaces with utility classes immediately.
-        </p>
+    <BrowserRouter>
+      <div className="min-h-screen bg-slate-950 text-slate-100">
+        <Navbar />
+        <main className="mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/student" element={<StudentPage />} />
+            <Route path="/register" element={<StudentRegistry />} />
+            <Route path="/timetable" element={<TimeTable />} />
+            <Route path="/payments" element={<PaymentSchedule />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-    </main>
+    </BrowserRouter>
   )
 }
 
