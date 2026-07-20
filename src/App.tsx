@@ -6,7 +6,7 @@ import HomePage from './pages'
 import StudentPage from './pages/studentPage'
 import LoginPage from './pages/auth/login'
 import SignupPage from './pages/auth/signup'
-import StudentRegistry from './components/studentRegistery'
+import StudentRegistry from './pages/studentRegistery'
 import PaymentSchedule from './components/paymentschedule'
 import TimeTable from './components/timeTable'
 

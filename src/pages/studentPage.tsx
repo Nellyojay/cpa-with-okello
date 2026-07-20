@@ -1,6 +1,16 @@
+import { useEffect, useState } from 'react'
 import StudentInfo from '../components/studentInfo'
+import { useNavigate } from 'react-router-dom';
 
 function StudentPage() {
+  const navigate = useNavigate();
+  const [registered, setRegistered] = useState<string | boolean | null>(null);
+
+  useEffect(() => {
+    const confirm = localStorage.getItem('registered')
+    setRegistered(confirm)
+  }, [])
+
   return (
     <div className="w-full space-y-6">
       <section className="portal-card p-8">
@@ -11,7 +21,21 @@ function StudentPage() {
         </p>
       </section>
 
-      <StudentInfo />
+      {registered ? (
+        <StudentInfo />
+      ) : (
+        <div
+          className='flex items-center justify-center'
+        >
+          <button
+            title='register for CPA paper'
+            onClick={() => navigate('/register')}
+            className='border border-gray-700 p-3 rounded-2xl bg-primary-strong sm:hover:bg-primary font-semibold text-black'
+          >
+            Register For Paper
+          </button>
+        </div>
+      )}
     </div>
   )
 }
