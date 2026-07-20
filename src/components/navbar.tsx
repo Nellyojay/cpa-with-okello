@@ -22,8 +22,9 @@ function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleThe
 
           <div className="flex items-center gap-2">
             <button
+              title='coming soon'
               type="button"
-              onClick={onToggleTheme}
+              onClick={() => { }}
               className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface-soft)] px-3 py-2 text-sm font-medium text-[var(--color-text)] transition hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
             >
               {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}

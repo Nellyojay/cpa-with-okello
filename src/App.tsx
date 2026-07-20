@@ -25,7 +25,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
+      <div className="min-h-screen bg-bg text-text">
         <Navbar theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
         <main className="mx-auto flex min-h-[calc(100vh-12rem)] max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <Routes>
