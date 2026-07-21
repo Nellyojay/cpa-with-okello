@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PaymentSchedule from "../components/paymentschedule";
 
@@ -7,6 +7,21 @@ function StudentRegistry() {
   const [openStep1, setOpenStep1] = useState(false);
   const [openStep2, setOpenStep2] = useState(false);
   const [registered, setRegistered] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = window.localStorage.getItem("registered") === "true";
+      setRegistered(stored);
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    if (!registered) {
+      setRegistered(true);
+      window.localStorage.setItem("registered", "true");
+    }
+    navigate('/student');
+  }
 
   return (
     <div className="portal-card w-full p-6 sm:p-8 lg:p-10">
@@ -76,17 +91,10 @@ function StudentRegistry() {
       <div className="flex items-center justify-center pt-4">
         <button
           title="submit-data"
-          onClick={() => {
-            setRegistered(true)
-
-            if (registered === true) {
-              localStorage.setItem("registered", JSON.stringify(registered));
-              navigate('/student')
-            }
-          }}
+          onClick={handleSubmit}
           className="border border-gray-500 px-4 py-2 rounded-2xl bg-primary-strong text-card-strong font-semibold sm:hover:bg-primary transition-all"
         >
-          Submit Registraton
+          Submit Registration
         </button>
       </div>
     </div>

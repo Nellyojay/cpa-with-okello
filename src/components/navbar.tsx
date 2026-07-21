@@ -89,7 +89,7 @@ function Navbar({
                     navigate('/login')
                     setIsOpen(false)
                   }}
-                  className="rounded-full border border-border px-3 py-2 text-sm font-medium text-text transition hover:bg-red-900/50 hover:text-text"
+                  className="rounded-full px-3 py-2 text-sm transition text-text-soft hover:bg-red-900/50 hover:text-text border"
                 >
                   Log Out
                 </button>
