@@ -1,5 +1,5 @@
 import { useEffect, useState, type JSX } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import HomePage from './pages'
@@ -48,7 +48,7 @@ function App() {
   const handleSignOut = () => setSignedIn(false)
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="min-h-screen bg-bg text-text">
         <Navbar
           theme={theme}
@@ -76,7 +76,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
