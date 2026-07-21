@@ -23,9 +23,9 @@ function HomePage() {
   return (
     <div className="w-full space-y-6">
       <section className="portal-card p-6 sm:p-8 lg:p-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">CPA student portal</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">CPA WITH OKELLO DICKSON</p>
         <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-          Learn better with a calm, focused study space.
+          Learn better with a calm and more interactive experience.
         </h1>
         <p className="mt-4 max-w-2xl text-base text-slate-300 sm:text-lg">
           This starter portal helps CPA students stay on track with study resources, registration, payments, and their weekly timetable.

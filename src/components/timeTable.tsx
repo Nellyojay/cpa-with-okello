@@ -8,7 +8,7 @@ const schedule = [
 ]
 
 function TimeTable() {
-  const [openLink, setOpenLink] = useState(false);
+  const [openLink, setOpenLink] = useState<string | null>(null);
   return (
     <div className="portal-card w-full p-6 sm:p-8 lg:p-10">
       <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">Study timetable</p>
@@ -20,22 +20,46 @@ function TimeTable() {
         {schedule.map((item) => (
           <div key={item.day} className="portal-card-strong px-4 py-4 sm:hover:border-gray-500">
             <div className="flex flex-1 items-center justify-between mb-2">
-              <a href="#" key={item.day} onClick={() => setOpenLink(!openLink)}>
-                <p className="font-semibold text-white">{item.day}</p>
-                <p className="text-sm text-slate-400">{item.task}</p>
-              </a>
-              <p className="text-sm font-semibold text-primary">{item.time}</p>
+              <button
+                type="button"
+                onClick={() => setOpenLink(openLink === item.day ? null : item.day)}
+                className="flex w-full items-center justify-between text-left"
+              >
+                <div>
+                  <p className="font-semibold text-white">{item.day}</p>
+                  <p className="text-sm text-slate-400">{item.task}</p>
+                </div>
+
+                <div className="flex items-center">
+                  <p className="text-sm font-semibold text-primary w-20 text-right">{item.time}</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-5 w-5 ml-3 transform transition-transform duration-200 ${openLink === item.day ? 'rotate-180' : 'rotate-0'}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+
+              </button>
             </div>
 
-            {Boolean(openLink && item.sessionLink) ? (
-              <a href="#"
-                className="text-primary-strong sm:hover:text-primary not-sm:active:text-primary"
-              >
-                Join class: {item.sessionLink.slice(0, 12)}...
-              </a>
-            ) : Boolean(openLink && !item.sessionLink) && (
-              <p className="text-gray-400">--Class not created yet--</p>
-            )}
+            <div className={`overflow-hidden transition-all duration-200 ${openLink === item.day ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+              {item.sessionLink ? (
+                <a
+                  href={item.sessionLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-strong sm:hover:text-primary not-sm:active:text-primary block"
+                >
+                  Join class: {item.sessionLink.slice(0, 12)}...
+                </a>
+              ) : (
+                <p className="text-gray-400">--Class not created yet--</p>
+              )}
+            </div>
           </div>
         ))}
       </div>

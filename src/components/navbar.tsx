@@ -16,8 +16,8 @@ function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleThe
 
   return (
     <header className="border-b border-border bg-surface/90 backdrop-blur sticky top-0 z-50">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between pt-4">
+      <div className="mx-auto flex md:justify-between max-w-7xl not-md:flex-col md:items-center gap-3 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between py-2 md:py-4">
           <NavLink to="/" className="text-lg font-semibold text-primary" onClick={() => setIsOpen(false)}>
             CPA Portal
           </NavLink>
@@ -27,7 +27,7 @@ function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleThe
               title='coming soon'
               type="button"
               onClick={() => { onToggleTheme }}
-              className="rounded-full border border-border bg-surface-soft px-3 py-2 text-sm font-medium text-text transition hover:border-primary hover:text-primary"
+              className="rounded-full border border-border bg-surface-soft px-3 py-2 text-sm font-medium text-text transition hover:border-primary hover:text-primary hidden"
             >
               {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
             </button>
@@ -56,7 +56,7 @@ function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleThe
           </div>
         </div>
 
-        <div className="overflow-hidden md:block md:pb-2">
+        <div className="overflow-hidden md:block">
           <nav
             className={`flex flex-col gap-2 border-t border-border pt-3 transition-all duration-300 ease-out md:flex md:flex-row md:items-center md:gap-2 md:border-t-0 md:pt-0 ${isOpen ? 'max-h-auto opacity-100' : 'max-h-0 opacity-0 md:max-h-none md:opacity-100'
               }`}
