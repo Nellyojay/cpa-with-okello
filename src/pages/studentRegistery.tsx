@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PaymentSchedule from "../components/paymentschedule";
 
 function StudentRegistry() {
   const navigate = useNavigate();
@@ -65,20 +66,8 @@ function StudentRegistry() {
           </a>
 
           {openStep2 && (
-            <div>
-              <div id="papers" className="py-4 px-2">
-                <h2 className="text-primary underline">Papers</h2>
-              </div>
-
-              <div id="tie-table" className="px-2">
-                <h2 className="mb-2 underline text-primary">Sitting</h2>
-                <select name="" id="" className="bg-card-strong rounded-2xl px-2">
-                  <option value="">--Select--</option>
-                  <option value="may">May</option>
-                  <option value="august">August</option>
-                  <option value="december">December</option>
-                </select>
-              </div>
+            <div className="mt-4">
+              <PaymentSchedule />
             </div>
           )}
 

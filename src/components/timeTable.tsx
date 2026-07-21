@@ -1,11 +1,14 @@
+import { useState } from "react";
+
 const schedule = [
-  { day: 'Monday', task: 'Audit practice', time: '7:00 PM' },
-  { day: 'Tuesday', task: 'Tax revision', time: '6:30 PM' },
-  { day: 'Wednesday', task: 'Financial reporting review', time: '8:00 PM' },
-  { day: 'Thursday', task: 'Group discussion', time: '7:30 PM' },
+  { day: 'Monday', task: 'Audit practice', time: '7:00 PM', sessionLink: 'https:123456789' },
+  { day: 'Tuesday', task: 'Tax revision', time: '6:30 PM', sessionLink: 'https:123456789' },
+  { day: 'Wednesday', task: 'Financial reporting review', time: '8:00 PM', sessionLink: 'https:123456789' },
+  { day: 'Thursday', task: 'Group discussion', time: '7:30 PM', sessionLink: 'https:123456789' },
 ]
 
 function TimeTable() {
+  const [openLink, setOpenLink] = useState(false);
   return (
     <div className="portal-card w-full p-6 sm:p-8 lg:p-10">
       <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">Study timetable</p>
@@ -15,12 +18,18 @@ function TimeTable() {
       </p>
       <div className="mt-6 space-y-3">
         {schedule.map((item) => (
-          <div key={item.day} className="portal-card-strong flex flex-wrap items-center justify-between px-4 py-4">
-            <div>
-              <p className="font-semibold text-white">{item.day}</p>
-              <p className="text-sm text-slate-400">{item.task}</p>
+          <div key={item.day} className="portal-card-strong px-4 py-4 sm:hover:border-gray-500">
+            <div className="flex flex-1 items-center justify-between mb-2">
+              <a href="#" key={item.day} onClick={() => setOpenLink(!openLink)}>
+                <p className="font-semibold text-white">{item.day}</p>
+                <p className="text-sm text-slate-400">{item.task}</p>
+              </a>
+              <p className="text-sm font-semibold text-primary">{item.time}</p>
             </div>
-            <p className="text-sm font-semibold text-primary">{item.time}</p>
+
+            {!openLink && (
+              <a href="#" className="text-primary-strong sm:hover:text-primary not-sm:active:text-primary">{item.sessionLink}</a>
+            )}
           </div>
         ))}
       </div>
