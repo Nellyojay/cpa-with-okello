@@ -89,8 +89,11 @@ function StudentRegistry() {
             title="submit-data"
             onClick={() => {
               setRegistered(true)
-              localStorage.setItem("registered", JSON.stringify(registered))
-              navigate('/student')
+
+              if (registered === true) {
+                localStorage.setItem("registered", JSON.stringify(registered));
+                navigate('/student')
+              }
             }}
             className="border border-gray-500 px-4 py-2 rounded-2xl bg-primary-strong text-card-strong font-semibold sm:hover:bg-primary transition-all"
           >

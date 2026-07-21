@@ -34,13 +34,6 @@ function StudentInfo() {
           </div>
         </div>
       </div>
-
-      <div className="portal-card p-5 sm:p-6">
-        <h2 className="text-xl font-semibold text-white">Time Table</h2>
-        <div className="mt-4 space-y-4">
-          <p className="font-bold text-gray-500">-- No data --</p>
-        </div>
-      </div>
     </section>
   )
 }

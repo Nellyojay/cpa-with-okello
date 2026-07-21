@@ -18,10 +18,12 @@ const quickLinks = [
 ]
 
 function HomePage() {
+  const signedIn = localStorage.getItem('signedIn')
+
   return (
     <div className="w-full space-y-6">
       <section className="portal-card p-6 sm:p-8 lg:p-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-(--color-primary)">CPA student portal</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">CPA student portal</p>
         <h1 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
           Learn better with a calm, focused study space.
         </h1>
@@ -29,10 +31,10 @@ function HomePage() {
           This starter portal helps CPA students stay on track with study resources, registration, payments, and their weekly timetable.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a href="/student" className="rounded-full bg-(--color-primary) px-5 py-2.5 text-center text-sm font-semibold text-slate-950 transition hover:bg-(--color-primary-strong)">
+          <a href={`${signedIn ? '/student' : '/login'}`} className="rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-slate-950 transition hover:bg-primary-strong)">
             Open dashboard
           </a>
-          <a href="/signup" className="rounded-full border border-slate-700 px-5 py-2.5 text-center text-sm font-semibold text-slate-100 transition hover:border-(--color-primary) hover:text-(--color-primary)">
+          <a href="/signup" className="rounded-full border border-slate-700 px-5 py-2.5 text-center text-sm font-semibold text-slate-100 transition hover:border-primary) hover:text-primary)">
             Create account
           </a>
         </div>
