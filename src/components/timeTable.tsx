@@ -3,7 +3,7 @@ import { useState } from "react";
 const schedule = [
   { day: 'Monday', task: 'Audit practice', time: '7:00 PM', sessionLink: 'https:123456789' },
   { day: 'Tuesday', task: 'Tax revision', time: '6:30 PM', sessionLink: 'https:123456789' },
-  { day: 'Wednesday', task: 'Financial reporting review', time: '8:00 PM', sessionLink: 'https:123456789' },
+  { day: 'Wednesday', task: 'Financial reporting review', time: '8:00 PM', sessionLink: '' },
   { day: 'Thursday', task: 'Group discussion', time: '7:30 PM', sessionLink: 'https:123456789' },
 ]
 
@@ -27,8 +27,14 @@ function TimeTable() {
               <p className="text-sm font-semibold text-primary">{item.time}</p>
             </div>
 
-            {!openLink && (
-              <a href="#" className="text-primary-strong sm:hover:text-primary not-sm:active:text-primary">{item.sessionLink}</a>
+            {Boolean(openLink && item.sessionLink) ? (
+              <a href="#"
+                className="text-primary-strong sm:hover:text-primary not-sm:active:text-primary"
+              >
+                Join class: {item.sessionLink.slice(0, 12)}...
+              </a>
+            ) : Boolean(openLink && !item.sessionLink) && (
+              <p className="text-gray-400">--Class not created yet--</p>
             )}
           </div>
         ))}
