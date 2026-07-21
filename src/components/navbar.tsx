@@ -1,18 +1,36 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/student', label: 'Dashboard' },
-  { to: '/register', label: 'Registeration' },
-  { to: '/timetable', label: 'Timetable' },
-  { to: '/payments', label: 'Payments' },
-  { to: '/login', label: 'Log Out' },
-  { to: '/signup', label: 'Join' },
-]
-
-function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleTheme: () => void }) {
+function Navbar({
+  theme,
+  onToggleTheme,
+  signedIn,
+  onSignOut,
+}: {
+  theme: 'dark' | 'light'
+  onToggleTheme: () => void
+  signedIn: boolean
+  onSignOut: () => void
+}) {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const links = [
+    { to: '/', label: 'Home' },
+    ...(signedIn ? [
+      { to: '/student', label: 'Dashboard' },
+      { to: '/register', label: 'Registration' },
+      { to: '/timetable', label: 'Timetable' },
+    ] : []),
+    { to: '/payments', label: 'Payments' },
+    ...(!signedIn
+      ? [
+        { to: '/login', label: 'Login' },
+        { to: '/signup', label: 'Join' },
+      ]
+      : [{ to: '/login', label: 'Log Out', isLogout: true }]
+    ),
+  ]
 
   return (
     <header className="border-b border-border bg-surface/90 backdrop-blur sticky top-0 z-50">
@@ -62,29 +80,39 @@ function Navbar({ theme, onToggleTheme }: { theme: 'dark' | 'light'; onToggleThe
               }`}
           >
             {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={() => {
-                  if (link.label === 'Log Out') {
-                    localStorage.removeItem('signedIn')
+              link.isLogout ? (
+                <button
+                  key={link.to}
+                  type="button"
+                  onClick={() => {
+                    onSignOut()
+                    navigate('/login')
+                    setIsOpen(false)
+                  }}
+                  className="rounded-full border border-border px-3 py-2 text-sm font-medium text-text transition hover:bg-red-900/50 hover:text-text"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) =>
+                    `rounded-full px-3 py-2 text-sm transition ${isActive
+                      ? 'text-text-soft font-semibold border'
+                      : 'text-text-soft hover:bg-surface-soft hover:text-text'
+                    }
+                    ${link.label === 'Join'
+                      ? 'font-bold text-center border border-gray-500 sm:hover:border-primary sm:hover:text-white'
+                      : ''
+                    }
+                    `
                   }
-                  setIsOpen(false);
-                }}
-                className={({ isActive }) =>
-                  `rounded-full px-3 py-2 text-sm transition ${isActive
-                    ? 'text-text-soft font-semibold border'
-                    : 'text-text-soft hover:bg-surface-soft hover:text-text'
-                  }
-                  ${link.label === 'Join'
-                    ? 'font-bold text-center border border-gray-500 sm:hover:border-primary sm:hover:text-white'
-                    : ''
-                  }
-                  `
-                }
-              >
-                {link.label}
-              </NavLink>
+                >
+                  {link.label}
+                </NavLink>
+              )
             ))}
           </nav>
         </div>

@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
-function SignupPage() {
+function SignupPage({ onSignIn }: { onSignIn: () => void }) {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [next, setNext] = useState(false);
   const [error, setError] = useState('');
-  const session = "CPA-session-123456789";
 
   return (
     <div className="portal-card mx-auto flex w-full max-w-xl flex-col p-6 sm:p-8 lg:p-10">
@@ -72,7 +71,7 @@ function SignupPage() {
             onClick={() => {
               if (name) {
                 setError('')
-                localStorage.setItem('signedIn', session)
+                onSignIn()
                 navigate('/student')
               } else {
                 setError("Please fill in the required field")

@@ -17,9 +17,9 @@ const quickLinks = [
   },
 ]
 
-function HomePage() {
-  const signedIn = localStorage.getItem('signedIn')
+import { Link } from 'react-router-dom'
 
+function HomePage({ signedIn }: { signedIn: boolean }) {
   return (
     <div className="w-full space-y-6">
       <section className="portal-card p-6 sm:p-8 lg:p-10">
@@ -31,12 +31,14 @@ function HomePage() {
           This starter portal helps CPA students stay on track with study resources, registration, payments, and their weekly timetable.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a href={`${signedIn ? '/student' : '/login'}`} className="rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-slate-950 transition hover:bg-primary-strong)">
-            Open dashboard
-          </a>
-          <a href="/signup" className="rounded-full border border-slate-700 px-5 py-2.5 text-center text-sm font-semibold text-slate-100 transition hover:border-primary) hover:text-primary)">
-            Create account
-          </a>
+          <Link to={signedIn ? '/student' : '/login'} className="rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-slate-950 transition hover:bg-primary-strong">
+            {signedIn ? 'Go to dashboard' : 'Open dashboard'}
+          </Link>
+          {!signedIn && (
+            <Link to="/signup" className="rounded-full border border-slate-700 px-5 py-2.5 text-center text-sm font-semibold text-slate-100 transition hover:border-primary hover:text-primary">
+              Create account
+            </Link>
+          )}
         </div>
       </section>
 

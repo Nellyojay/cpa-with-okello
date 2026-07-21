@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
-  const session = "CPA-session-123456789";
+function LoginPage({ onSignIn }: { onSignIn: () => void }) {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +13,7 @@ function LoginPage() {
         <input className="w-full rounded-2xl border border-slate-700 bg-surface-soft px-4 py-3 text-slate-100 outline-none focus:border-primary" placeholder="Password" type="password" />
         <button
           onClick={() => {
-            localStorage.setItem('signedIn', session)
+            onSignIn()
             navigate('/student')
           }}
           className="w-full rounded-full bg-primary px-4 py-3 font-semibold text-slate-950 transition hover:bg-primary-strong"
